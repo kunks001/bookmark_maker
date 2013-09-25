@@ -2,6 +2,7 @@ require 'sinatra'
 require 'data_mapper'
 require 'dm-postgres-adapter'
 require 'rack-flash'
+require 'haml'
 
 class Server < Sinatra::Base
 
@@ -20,12 +21,14 @@ class Server < Sinatra::Base
 
   get '/' do
   	@links = Link.all
-  	erb :index
+  	# erb :index
+    haml :index
   end
 
   get '/users/new' do
     @user = User.new
-    erb :"users/new"
+    # erb :"users/new"
+    haml :"users/new"
   end
 
   post '/users' do
@@ -37,14 +40,16 @@ class Server < Sinatra::Base
       redirect to('/')
     else
       flash[:notice] = "Sorry, your passwords don't match"
-      erb :"users/new"
+      # erb :"users/new"
+      haml :"users/new"
     end
   end
 
   get '/tags/:text' do
   	tag = Tag.first(:text => params[:text])
   	@links = tag ? tag.links : []
-  	erb :index
+  	# erb :index
+    haml :index
   end
 
   post '/links' do

@@ -1,0 +1,15 @@
+!!!
+%html
+  %head
+    %title
+      Bookmark manager
+    %link(rel="stylesheet" type="text/css" href="/css/application.css")
+
+  %body
+    - if current_user
+      Welcome,
+      = current_user.email
+    -if flash[:notice]
+      #notice
+        =flash[:notice]
+    = yield

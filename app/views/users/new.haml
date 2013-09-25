@@ -1,0 +1,12 @@
+- email = @user.email 
+%h1
+  Please sign up
+
+%form
+  Email:
+  %input(name="email" type="text" value=email)
+  Password:
+  %input(type="password" name="password")
+  Confirm Password:
+  %input(type="password" name="password_confirmation")
+  %input(value="Sign up" type="submit")

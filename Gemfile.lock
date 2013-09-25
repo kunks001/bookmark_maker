@@ -87,6 +87,8 @@ GEM
     guard-rspec (3.1.0)
       guard (>= 1.8)
       rspec (~> 2.13)
+    haml (4.0.3)
+      tilt
     highline (1.6.19)
     json (1.8.0)
     json_pure (1.8.0)
@@ -155,6 +157,7 @@ DEPENDENCIES
   guard
   guard-cucumber
   guard-rspec
+  haml
   rack-flash3
   rspec
   sinatra

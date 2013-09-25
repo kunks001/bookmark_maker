@@ -1,0 +1,20 @@
+%h1
+  Welcome to the bookmark manager
+
+Current links:
+%ul
+  - @links.each do |link|
+    - link_url = link.url
+    %li
+      %a(href=link_url)
+        =link.title
+
+#new-link
+  %form(action="/links" method="post")
+    url 
+    %input(type="text" name="url")
+    title
+    %input(type="text" name="title")
+    tags
+    %input(type="text" name="tags")
+    %input(type="submit" value="Add link")
