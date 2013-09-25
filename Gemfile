@@ -4,8 +4,11 @@ ruby '2.0.0'
 gem 'sinatra'
 gem 'data_mapper'
 gem 'dm-postgres-adapter'
+gem 'bcrypt-ruby'
+gem 'rack-flash3'
 
 group :development, :test do
+	gem 'cucumber-sinatra'
   gem 'rspec'
   gem 'database_cleaner'
   gem 'capybara'
