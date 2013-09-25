@@ -15,7 +15,7 @@ class Server < Sinatra::Base
 
   enable :sessions
   set :session_secret, 'super secret'
-  
+
   use Rack::Flash
 
   get '/' do
@@ -56,5 +56,4 @@ class Server < Sinatra::Base
   	Link.create(:url => url, :title => title, :tags => tags)
     redirect to('/')
   end
-
 end
