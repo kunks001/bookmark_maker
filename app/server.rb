@@ -44,6 +44,28 @@ class Server < Sinatra::Base
     end
   end
 
+  get '/sessions/new' do
+    haml :"sessions/new"
+  end
+
+  post '/sessions' do
+    email, password = params[:email], params[:password]
+    user = User.authenticate(email, password)
+    if user
+      session[:user_id] = user.id
+      redirect to('/')
+    else
+      flash[:errors] = ["The email or password are incorrect"]
+      haml :"sessions/new"
+    end
+  end
+
+  delete '/sessions' do
+    flash[:notice] = "Good bye!"
+    session[:user_id] = nil
+    redirect to('/')
+  end
+
   get '/tags/:text' do
   	tag = Tag.first(:text => params[:text])
   	@links = tag ? tag.links : []
