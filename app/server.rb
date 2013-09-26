@@ -5,8 +5,32 @@ require 'rack-flash'
 require 'haml'
 require 'sinatra/partial'
 require 'pony'
+require 'mime/types'
+require 'rest_client'
 
 class Server < Sinatra::Base
+
+  plaintext = MIME::Types['text/plain']
+  text      = plaintext.first
+  puts text.media_type            # => 'text'
+  puts text.sub_type              # => 'plain'
+
+  puts text.extensions.join(" ")  # => 'txt asc c cc h hh cpp hpp dat hlp'
+
+  puts text.encoding              # => quoted-printable
+  puts text.binary?               # => false
+  puts text.ascii?                # => true
+  puts text.obsolete?             # => false
+  puts text.registered?           # => true
+  puts text == 'text/plain'       # => true
+  puts MIME::Type.simplified('x-appl/x-zip')
+                                  # => 'appl/zip'
+
+  puts MIME::Types.any? { |type|
+    type.content_type == 'text/plain'
+  }                               # => true
+  puts MIME::Types.all?(&:registered?)
+                                  # => false
 
   require_relative 'models/link'
   require_relative 'models/tag'

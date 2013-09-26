@@ -9,6 +9,9 @@ gem 'rack-flash3'
 gem 'haml'
 gem 'sinatra-partial'
 gem 'pony'
+gem 'mime-types'
+gem 'rest-client'
+gem 'rdoc'
 
 group :development, :test do
   gem 'cucumber-sinatra'
