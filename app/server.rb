@@ -25,13 +25,11 @@ class Server < Sinatra::Base
 
   get '/' do
   	@links = Link.all
-  	# erb :index
     haml :index
   end
 
   get '/users/new' do
     @user = User.new
-    # erb :"users/new"
     haml :"users/new"
   end
 
@@ -73,7 +71,6 @@ class Server < Sinatra::Base
   get '/tags/:text' do
   	tag = Tag.first(:text => params[:text])
   	@links = tag ? tag.links : []
-  	# erb :index
     haml :index
   end
 
