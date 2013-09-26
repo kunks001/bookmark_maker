@@ -1,5 +1,10 @@
-%h1
-  Welcome to the bookmark manager
+- if current_user
+  %h1
+  Welcome to the bookmark manager,
+  = current_user.email
+  %form(method="post" action="/sessions")
+    %input(type="hidden" name="_method" value="delete")
+    %input(type="submit" value="Sign out")
 
 Current links:
 %ul

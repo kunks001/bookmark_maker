@@ -10,13 +10,6 @@
       #notice
         = flash[:notice]
 
-    - if current_user
-      Welcome,
-      = current_user.email
-      %form(method="post" action="/sessions")
-        %input(type="hidden" name="_method" value="delete")
-        %input(type="submit" value="Sign out")
-
     - if flash[:errors] && !flash[:errors].empty?
       Sorry, there were the following errors with this form:
       %ul#errors

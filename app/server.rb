@@ -18,6 +18,7 @@ class Server < Sinatra::Base
   set :session_secret, 'super secret'
 
   use Rack::Flash
+  use Rack::MethodOverride
 
   get '/' do
   	@links = Link.all
@@ -55,7 +56,7 @@ class Server < Sinatra::Base
       session[:user_id] = user.id
       redirect to('/')
     else
-      flash[:errors] = ["The email or password are incorrect"]
+      flash.now[:errors] = ["The email or password are incorrect"]
       haml :"sessions/new"
     end
   end
