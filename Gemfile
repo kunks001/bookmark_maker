@@ -8,7 +8,7 @@ gem 'bcrypt-ruby'
 gem 'rack-flash3'
 gem 'haml'
 gem 'sinatra-partial'
-
+gem 'pony'
 
 group :development, :test do
   gem 'cucumber-sinatra'

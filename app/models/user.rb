@@ -26,4 +26,11 @@ class User
       nil
     end
   end
+
+  def recovery_token(email)
+    user = User.first(:email => email)
+    user.password_token = Array.new(64) {(65 + rand(58)).chr}.join
+    user.password_token_timestamp = Time.now
+    user.save
+  end
 end

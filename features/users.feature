@@ -16,3 +16,8 @@ Feature: Users
 		When the user signs in
 		Then they should be redirected to the index page
 		And there should be a welcome message
+
+	Scenario: Resetting forgotten password
+		Given the user has forgotten their password
+		When the user fills in the forgotten password form
+		Then they should receive an email containing a temporary password

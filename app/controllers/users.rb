@@ -16,4 +16,17 @@ class Server < Sinatra::Base
       haml :"users/new"
     end
   end
+
+  # get '/users/password_reset/reset' do
+  #   haml :"users/password_reset/reset"
+  # end
+
+  get "/users/reset_password/:token"
+    email = params[:email]
+
+    Pony.mail(:to => email, :from => 'noreply@bookmarkmaker.com', :subject => 'Hello')
+  end
+
+  # post '/users/password_reset' do
+  # end
 end

@@ -38,8 +38,22 @@ Given(/^the user is signed out$/) do
 end
 
 When(/^the user signs in$/) do
-  (visit '/sessions/new')
+  visit('/sessions/new')
   fill_in "email", :with => "fake@fake.com"
   fill_in "password", :with => "foobar"
   click_button("Sign in")
+end
+
+Given(/^the user has forgotten their password$/) do
+  visit('/sessions/new')
+  page.should have_content("Forgotten your password?")
+end
+
+When(/^the user fills in the forgotten password form$/) do
+  fill_in "email", :with => "fake@fake.com"
+  click_button("Submit")
+end
+
+Then(/^they should receive an email containing a temporary password$/) do
+  pending # express the regexp above with the code you wish you had
 end
