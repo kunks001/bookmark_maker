@@ -2,7 +2,7 @@ Please sign in.
 
 %form(method="post" action="/sessions")
   Email:
-  %input(type="text" name='email_recovery_token')
+  %input(type="text" name='email')
   Password:
   %input(type="password" name='password')
   %input(type="submit" value="Sign in")
@@ -10,5 +10,5 @@ Please sign in.
 %p
   Forgotten your password? Enter your email here to get a temporary one:
   %form(action="users/reset_password" method="post")
-    %input(name="email" type="text" value="email")
+    %input(name="email_recovery_token" type="text")
     %input(value="Submit" type="submit")

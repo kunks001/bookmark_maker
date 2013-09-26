@@ -20,4 +20,4 @@ Feature: Users
 	Scenario: Resetting forgotten password
 		Given the user has forgotten their password
 		When the user fills in the forgotten password form
-		Then they should receive an email containing a temporary password
+		Then "example@example.com" should receive an email with subject "reset your password"
