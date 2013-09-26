@@ -13,6 +13,7 @@ gem 'pony'
 group :development, :test do
   gem 'cucumber-sinatra'
   gem 'rspec'
+  gem 'email_spec'
   gem 'database_cleaner'
   gem 'capybara'
   gem 'guard'

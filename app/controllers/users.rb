@@ -21,10 +21,16 @@ class Server < Sinatra::Base
   #   haml :"users/password_reset/reset"
   # end
 
-  get "/users/reset_password/:token"
+  post "/users/reset_password" do
     email = params[:email]
+    user = User.first(:email => email)
+    user.recovery_token
+    token = user.password_token
+    Pony.mail(:to => email, :from => 'noreply@bookmarkmaker.com', :subject => 'reset your password by following this link: bookmark_maker.herokuapp.com/users/#{token}')
+  end
 
-    Pony.mail(:to => email, :from => 'noreply@bookmarkmaker.com', :subject => 'Hello')
+  get "/users/reset_password/:token" do
+    user = User.first(:password_token => token)
   end
 
   # post '/users/password_reset' do

@@ -6,6 +6,8 @@ require File.join(File.dirname(__FILE__), '..', '..', 'app', 'server.rb')
 
 require 'capybara'
 require 'capybara/cucumber'
+require 'email_spec'
+require 'email_spec/cucumber'
 require 'rspec'
 
 Capybara.app = Server

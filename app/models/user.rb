@@ -7,11 +7,16 @@ class User
 	property :id, Serial
   property :email, String, :unique => true, :message => "This email is already taken"
 	property :password_digest, Text
+  property :password_token, Text
+  property :password_token_timestamp, Text
 
   attr_reader :password
   attr_accessor :password_confirmation
+  attr_reader :password_token
+  attr_reader :password_token_timestamp
 
   validates_confirmation_of :password
+  validates_uniqueness_of :email
 
 	def password=(password)
     @password=password
@@ -27,8 +32,7 @@ class User
     end
   end
 
-  def recovery_token(email)
-    user = User.first(:email => email)
+  def recovery_token
     user.password_token = Array.new(64) {(65 + rand(58)).chr}.join
     user.password_token_timestamp = Time.now
     user.save
