@@ -7,9 +7,11 @@ gem 'dm-postgres-adapter'
 gem 'bcrypt-ruby'
 gem 'rack-flash3'
 gem 'haml'
+gem 'sinatra-partial'
+
 
 group :development, :test do
-	gem 'cucumber-sinatra'
+  gem 'cucumber-sinatra'
   gem 'rspec'
   gem 'database_cleaner'
   gem 'capybara'

@@ -3,6 +3,7 @@ require 'data_mapper'
 require 'dm-postgres-adapter'
 require 'rack-flash'
 require 'haml'
+require 'sinatra/partial'
 
 class Server < Sinatra::Base
 
@@ -11,6 +12,8 @@ class Server < Sinatra::Base
   require './lib/user'
   require_relative 'helpers/application'
   require_relative 'data_mapper_setup'
+
+  register Sinatra::Partial
 
   helpers ApplicationHelper
 

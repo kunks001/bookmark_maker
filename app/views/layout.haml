@@ -6,14 +6,6 @@
     %link(rel="stylesheet" type="text/css" href="/css/application.css")
 
   %body
-    - if flash[:notice]
-      #notice
-        = flash[:notice]
-
-    - if flash[:errors] && !flash[:errors].empty?
-      Sorry, there were the following errors with this form:
-      %ul#errors
-        - flash[:errors].each do |error| 
-          %li= error
-          
+    = partial :welcome_message
+    = partial :flash
     = yield
