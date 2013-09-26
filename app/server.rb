@@ -7,6 +7,7 @@ require 'sinatra/partial'
 require 'pony'
 require 'mime/types'
 require 'rest_client'
+require 'dm-timestamps'
 
 class Server < Sinatra::Base
 
