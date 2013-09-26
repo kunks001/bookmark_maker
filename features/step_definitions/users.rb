@@ -16,3 +16,30 @@ end
 Then(/^there should be a welcome message$/) do
   page.should have_content("Welcome to the bookmark maker, fake@fake.com")
 end
+
+Given(/^the user is signed in$/) do
+  (visit '/sessions/new')
+  fill_in "email", :with => "fake@fake.com"
+  fill_in "password", :with => "foobar"
+  click_button("Sign in")
+end
+
+When(/^the user clicks sign out$/) do
+  click_button("Sign out")
+end
+
+Then(/^there should be a goodbye message$/) do
+  page.should have_content("Good bye!")
+end
+
+Given(/^the user is signed out$/) do
+  visit('/')
+  page.should_not have_content("Welcome to the bookmark maker")
+end
+
+When(/^the user signs in$/) do
+  (visit '/sessions/new')
+  fill_in "email", :with => "fake@fake.com"
+  fill_in "password", :with => "foobar"
+  click_button("Sign in")
+end

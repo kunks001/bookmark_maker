@@ -1,5 +1,7 @@
-- if flash[:errors] && !flash[:errors].empty?
-  Sorry, there were the following errors with this form:
-  %ul#errors
-    - flash[:errors].each do |error| 
-      %li= error
+- if current_user
+  %h1
+  Welcome to the bookmark maker,
+  = current_user.email
+  %form(method="post" action="/sessions")
+    %input(type="hidden" name="_method" value="delete")
+    %input(type="submit" value="Sign out")
