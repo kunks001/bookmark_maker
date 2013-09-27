@@ -1,14 +1,13 @@
 Please sign in.
 
-%form(method="post" action="/sessions")
+%form#sign-in(method="post" action="/sessions")
   Email:
   %input(type="text" name='email')
   Password:
   %input(type="password" name='password')
   %input(type="submit" value="Sign in")
 
-%p
-  Forgotten your password? Enter your email here to get a temporary one:
-  %form(action="users/reset_password" method="post")
-    %input(name="email_recovery_token" type="text")
-    %input(value="Submit" type="submit")
+Forgotten your password? Enter your email here to get a temporary one:
+%form#recover-password(action="/users/reset_token" method="post")
+  %input(name="email" type="text")
+  %input(value="Submit" type="submit")

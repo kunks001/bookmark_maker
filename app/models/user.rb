@@ -11,10 +11,8 @@ class User
   property :password_token, Text
   property :password_token_timestamp, DateTime
 
-  attr_reader :password
+  attr_accessor :password
   attr_accessor :password_confirmation
-  attr_accessor :password_token
-  attr_accessor :password_token_timestamp
 
   validates_confirmation_of :password
   validates_uniqueness_of :email
@@ -33,8 +31,8 @@ class User
     end
   end
 
-  def recovery_token
-    password_token = Array.new(64) {(65 + rand(58)).chr}.join
-    password_token_timestamp = Time.now
+  def generate_password_token  
+    self.password_token_timestamp = DateTime.now
+    self.password_token = Array.new(64) {(65 + rand(58)).chr}.join
   end
 end

@@ -4,7 +4,7 @@ feature "User signs up" do
 
   scenario "when registering" do
     lambda { sign_up }.should change(User, :count).by(1)
-    expect(page).to have_content("Welcome to the bookmark manager, alice@example.com")
+    expect(page).to have_content("Welcome to the bookmark maker, alice@example.com")
     expect(User.first.email).to eq("alice@example.com")
   end
 
@@ -33,7 +33,7 @@ feature "User signs in" do
     visit '/'
     expect(page).not_to have_content('Welcome, test@test.com')
     sign_in('test@test.com', 'test')
-    expect(page).to have_content("Welcome to the bookmark manager, test@test.com")
+    expect(page).to have_content("Welcome to the bookmark maker, test@test.com")
   end
 
   scenario "with incorrect credentials" do
@@ -61,11 +61,33 @@ feature "User signs out" do
 
 end
 
+feature "User tries to reset password" do
+  before(:each) do
+    User.create(:email => 'test@test.com',
+                :password => 'test',
+                :password_confirmation => 'test')
+  end
+
+  scenario 'with correct information' do
+    visit '/sessions/new'
+    within("#recover-password") do
+      fill_in "email", :with => "test@test.com"    
+      click_button "Submit"
+    end
+    user = User.first(:email => "test@test.com")
+
+    expect(user.password_token.length).to be == 64
+    expect(user.password_token_timestamp).to be_an_instance_of DateTime
+  end
+end
+
 def sign_in(email, password)
   visit '/sessions/new'
-  fill_in 'email', :with => email
-  fill_in 'password', :with => password
-  click_button 'Sign in'
+  within('#sign-in') do
+    fill_in 'email', :with => email
+    fill_in 'password', :with => password
+    click_button 'Sign in'
+  end
 end
   
 def sign_up(email = "alice@example.com",
