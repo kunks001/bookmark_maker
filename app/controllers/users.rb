@@ -35,11 +35,13 @@ class Server < Sinatra::Base
 
   post '/sessions/users/reset_password' do
     email = params[:email_recovery_token]
+
     user = User.first(:email => email)
-    user.recovery_token(user)
-    user.save
-    token = user.password_token
-    send_message(token, email)
+    user.recovery_token
+    if user.save
+      token = user.password_token
+      send_message(token, email)
+
     # Pony.mail(
     #   :to => email,
     #   :from => 'noreply@bookmarkmaker.com', 
@@ -47,7 +49,11 @@ class Server < Sinatra::Base
     #   :body => 'reset your password by following this link: bookmark_maker.herokuapp.com/users/#{token}'
     # )
   
-    redirect to('sessions/new')
+      redirect to('sessions/new')
+    else
+      flash.now[:notice] = "Sorry, password_reset failed. please try again"
+      redirect to('sessions/new')
+    end
   end
 
   def send_message(token, email)
@@ -56,7 +62,7 @@ class Server < Sinatra::Base
     :from => "NoReply <noreply@bookmarkmaker.mailgun.org>",
     :to => "#{email}",
     :subject => "reset your password",
-    :text => "reset your password by following this link: bookmark_maker.herokuapp.com/users/reset_password?:token=#{token}"
+    :text => "reset your password by following this link: bookmark_maker.herokuapp.com/users/reset_password?token=#{token}"
   end
 
 end

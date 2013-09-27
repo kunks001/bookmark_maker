@@ -33,9 +33,8 @@ class User
     end
   end
 
-  def recovery_token(user)
-    user.password_token = Array.new(64) {(65 + rand(58)).chr}.join
-    user.password_token_timestamp = Time.now
-    user.save
+  def recovery_token
+    password_token = Array.new(64) {(65 + rand(58)).chr}.join
+    password_token_timestamp = Time.now
   end
 end
