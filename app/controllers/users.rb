@@ -16,8 +16,6 @@ class Server < Sinatra::Base
     user.update( :password => params[:password],
                  :password_confirmation => params[:password_confirmation])
 
-    # user.password = params[:new_password]
-    # user.password_confirmation = params[:new_password_confirmation]
     if user.save
       redirect to ('sessions/new')
     else
@@ -43,20 +41,7 @@ class Server < Sinatra::Base
 
     user = User.first(:email => email)
     user.generate_password_token    
-    # puts "*" * 80
-    # puts "*" * 80
-    # puts "*" * 80
-    # puts user.inspect
-    # user.password_token = (Array.new(64) {(65 + rand(58)).chr}.join)
-    # user.password_token_timestamp = DateTime.now
-    # puts user.save
-    # puts user.inspect
-    # puts "*" * 80
-    # puts "*" * 80
-    # puts "*" * 80    
-    if user.save
-      # puts user.inspect
-            
+    if user.save && Time.now < user.password_token_timestamp
       token = user.password_token
       send_message(token, email)
 
@@ -69,7 +54,6 @@ class Server < Sinatra::Base
   
       redirect to('sessions/new')
     else
-      # puts 'Y U NO SAVE?!?'
       flash.now[:notice] = "Sorry, password_reset failed. please try again"
       redirect to('sessions/new')
     end

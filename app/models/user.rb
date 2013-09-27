@@ -32,7 +32,7 @@ class User
   end
 
   def generate_password_token  
-    self.password_token_timestamp = DateTime.now
+    self.password_token_timestamp = DateTime.now + 1.hour
     self.password_token = Array.new(64) {(65 + rand(58)).chr}.join
   end
 end
