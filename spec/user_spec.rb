@@ -77,7 +77,7 @@ feature "User tries to reset password" do
     user = User.first(:email => "test@test.com")
 
     expect(user.password_token.length).to be == 64
-    expect(user.password_token_timestamp).to be_an_instance_of DateTime
+    expect(user.password_token_timestamp).to be_an_instance_of Time
   end
 end
 

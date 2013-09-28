@@ -12,6 +12,7 @@ gem 'pony'
 gem 'mime-types'
 gem 'rest-client'
 gem 'rdoc'
+gem 'activesupport'
 
 group :development, :test do
   gem 'cucumber-sinatra'

@@ -1,5 +1,6 @@
 require 'bcrypt'
 require 'dm-timestamps'
+require 'active_support'
 
 class User
 
@@ -9,7 +10,7 @@ class User
   property :email, String, :unique => true, :message => "This email is already taken"
 	property :password_digest, Text
   property :password_token, Text
-  property :password_token_timestamp, DateTime
+  property :password_token_timestamp, Time
 
   attr_accessor :password
   attr_accessor :password_confirmation
@@ -32,8 +33,7 @@ class User
   end
 
   def generate_password_token  
-    d = DateTime.now
-    self.password_token_timestamp = d + Rational(3600, 86400)
+    self.password_token_timestamp = Time.now + 60*60
     self.password_token = Array.new(64) {(65 + rand(58)).chr}.join
   end
 end
