@@ -5,6 +5,7 @@ Feature: Users
 	  Then they should be redirected to the index page
 	  And there should be a welcome message
 
+  @sign_up
 	Scenario: Signing out
 		Given the user is signed in
 		When the user clicks sign out
