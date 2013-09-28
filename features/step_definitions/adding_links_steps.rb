@@ -1,9 +1,3 @@
-before(:each) do
-  User.create(:email => 'test@test.com',
-              :password => 'test',
-              :password_confirmation => 'test')
-end
-
 Given(/^the user has signed in$/) do
   (visit '/sessions/new')
   within("#sign-in") do

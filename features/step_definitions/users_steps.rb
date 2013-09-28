@@ -4,16 +4,14 @@ module EmailHelpers
   end
 end
 
-# World(EmailHelpers)
-
 Given(/^the user is visiting the signup page$/) do
   visit ('/users/new')
 end
 
 When(/^the user enters their information and clicks submit$/) do
-  fill_in "email", :with => "fake@fake.com"
-  fill_in "password", :with => "foobar"
-  fill_in "password_confirmation", :with => "foobar"
+  fill_in "email", :with => "test@test.com"
+  fill_in "password", :with => "test"
+  fill_in "password_confirmation", :with => "test"
   click_button("Sign up")
 end
 
@@ -28,8 +26,8 @@ end
 Given(/^the user is signed in$/) do
   (visit '/sessions/new')
   within("#recover-password") do
-    fill_in "email", :with => "fake@fake.com"
-    fill_in "password", :with => "foobar"
+    fill_in "email", :with => "test@test.com"
+    fill_in "password", :with => "test"
     click_button("Sign in")
   end
 end
