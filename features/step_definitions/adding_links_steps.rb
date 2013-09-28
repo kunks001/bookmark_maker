@@ -1,16 +1,17 @@
 Given(/^the user has signed in$/) do
   (visit '/sessions/new')
   within("#sign-in") do
-	  fill_in "email", :with => "test@test.com"
-	  fill_in "password", :with => "test"
+	  fill_in "email",     :with => "test@test.com"
+	  fill_in "password",  :with => "test"
 	  click_button("Sign in")
   end
 end
 
 When(/^the user enters a new link and clicks Add link$/) do
-  fill_in "url", :with => "http://google.co.uk"
-  fill_in "title", :with => "Google"
-  fill_in "tags", :with => "Search"
+  fill_in "url",         :with => "http://google.co.uk"
+  fill_in "title",       :with => "Google"
+  fill_in "tags",        :with => "Search"
+  fill_in "description", :with => "search engine"
   find(:button, 'Add link').click
 end
 

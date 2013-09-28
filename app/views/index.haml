@@ -26,9 +26,11 @@
       %input(type="text" name="title")
       tags
       %input(type="text" name="tags")
+      description
+      %input(type="text" name="description")
       %input(type="submit" value="Add link")
 - else
-  #add_links_description
+  #add_links_message
     %p
       Please sign in to add links
 
@@ -41,3 +43,7 @@
     %li
       %a(href=link_url)
         =link.title
+      #description
+        =link.description
+      #tags
+        =link.tags
