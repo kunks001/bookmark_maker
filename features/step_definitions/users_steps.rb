@@ -27,9 +27,11 @@ end
 
 Given(/^the user is signed in$/) do
   (visit '/sessions/new')
-  fill_in "email", :with => "fake@fake.com"
-  fill_in "password", :with => "foobar"
-  click_button("Sign in")
+  within("#recover-password") do
+    fill_in "email", :with => "fake@fake.com"
+    fill_in "password", :with => "foobar"
+    click_button("Sign in")
+  end
 end
 
 When(/^the user clicks sign out$/) do

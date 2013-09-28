@@ -1,5 +1,16 @@
-Given(/^the user is visiting the site$/) do
-  visit('/')
+before(:each) do
+  User.create(:email => 'test@test.com',
+              :password => 'test',
+              :password_confirmation => 'test')
+end
+
+Given(/^the user has signed in$/) do
+  (visit '/sessions/new')
+  within("#sign-in") do
+	  fill_in "email", :with => "test@test.com"
+	  fill_in "password", :with => "test"
+	  click_button("Sign in")
+  end
 end
 
 When(/^the user enters a new link and clicks Add link$/) do

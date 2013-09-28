@@ -1,17 +1,43 @@
-Current links:
+%header
+  %hi#logo
+    Bookmark Manager
+
+  - if current_user
+    %form(method="post" action="/sessions" id="sign_out_form")
+      %input(type="hidden" name="_method" value="delete")
+      %input(type="submit" value="Sign out" id="sign_out")
+
+  - else
+    #sign_up
+      %a(href="/users/new")
+        Sign up
+    #sign_in
+      %a(href="/sessions/new")
+        Sign in
+
+= partial :welcome_message
+
+- if current_user
+  #new-link
+    %form(action="/links" method="post")
+      url 
+      %input(type="text" name="url")
+      title
+      %input(type="text" name="title")
+      tags
+      %input(type="text" name="tags")
+      %input(type="submit" value="Add link")
+- else
+  #add_links_description
+    %p
+      Please sign in to add links
+
+%h2
+  Current links:
+
 %ul
   - @links.each do |link|
     - link_url = link.url
     %li
       %a(href=link_url)
         =link.title
-
-#new-link
-  %form(action="/links" method="post")
-    url 
-    %input(type="text" name="url")
-    title
-    %input(type="text" name="title")
-    tags
-    %input(type="text" name="tags")
-    %input(type="submit" value="Add link")
