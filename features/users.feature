@@ -11,6 +11,7 @@ Feature: Users
 		Then they should be redirected to the index page
 		And there should be a goodbye message
 
+  @sign_up
 	Scenario: Signing in
 		Given the user is signed out
 		When the user signs in
@@ -20,4 +21,4 @@ Feature: Users
 	Scenario: Resetting forgotten password
 		Given the user has forgotten their password
 		When the user fills in the forgotten password form
-		Then "example@example.com" should receive an email with subject "reset your password"
+		# Then "example@example.com" should receive an email with subject "reset your password"

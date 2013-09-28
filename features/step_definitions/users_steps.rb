@@ -20,12 +20,12 @@ Then(/^they should be redirected to the index page$/) do
 end
 
 Then(/^there should be a welcome message$/) do
-  page.should have_content("Welcome to the bookmark maker, fake@fake.com")
+  page.should have_content("Welcome to the bookmark maker, test@test.com")
 end
 
 Given(/^the user is signed in$/) do
   (visit '/sessions/new')
-  within("#recover-password") do
+  within("#sign-in") do
     fill_in "email", :with => "test@test.com"
     fill_in "password", :with => "test"
     click_button("Sign in")
@@ -47,9 +47,11 @@ end
 
 When(/^the user signs in$/) do
   visit('/sessions/new')
-  fill_in "email", :with => "fake@fake.com"
-  fill_in "password", :with => "foobar"
-  click_button("Sign in")
+  within('#sign-in') do
+    fill_in "email", :with => "test@test.com"
+    fill_in "password", :with => "test"
+    click_button("Sign in")
+  end
 end
 
 Given(/^the user has forgotten their password$/) do
@@ -61,14 +63,12 @@ Given(/^the user has forgotten their password$/) do
 end
 
 When(/^the user fills in the forgotten password form$/) do
-  fill_in "email_recovery_token", :with => "example@example.com"
-  click_button("Submit")
+  within('#recover-password') do
+    fill_in "email", :with => "example@example.com"
+    click_button("Submit")
+  end
 end
 
-Then /^(?:I|they|he|she|"([^"]*?)") should receive (an|no|\d+) emails? with subject "([^"]*?)"$/ do |address, amount, subject|
-  unread_emails_for(address).select { |m| m.subject =~ Regexp.new(Regexp.escape(subject)) }.size.should == parse_email_count(amount)
-end
-
-# Then (/^example@example\.com should receive an email$/) do
-#   unread_emails_for("example@example.com").size.should == 1
+# Then /^(?:I|they|he|she|"([^"]*?)") should receive (an|no|\d+) emails? with subject "([^"]*?)"$/ do |address, amount, subject|
+#   unread_emails_for(address).select { |m| m.subject =~ Regexp.new(Regexp.escape(subject)) }.size.should == parse_email_count(amount)
 # end
