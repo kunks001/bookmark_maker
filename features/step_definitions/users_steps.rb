@@ -10,6 +10,7 @@ end
 
 When(/^the user enters their information and clicks submit$/) do
   fill_in "email", :with => "test@test.com"
+  fill_in "username", :with => "tester"
   fill_in "password", :with => "test"
   fill_in "password_confirmation", :with => "test"
   click_button("Sign up")
@@ -20,7 +21,7 @@ Then(/^they should be redirected to the index page$/) do
 end
 
 Then(/^there should be a welcome message$/) do
-  page.should have_content("Welcome to the bookmark maker, test@test.com")
+  page.should have_content("Welcome to the bookmark maker, tester")
 end
 
 Given(/^the user is signed in$/) do
