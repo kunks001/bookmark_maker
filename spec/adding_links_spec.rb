@@ -4,6 +4,7 @@ feature "User adds a new link" do
 
   before(:each) do
   User.create(:email => 'test@test.com',
+              :username => 'tester',
               :password => 'test_password',
               :password_confirmation => 'test_password')
   sign_in('test@test.com', 'test_password')

@@ -3,18 +3,14 @@ require 'spec_helper'
 feature 'User browses the list of links' do
 
   before(:each) {
-    Link.create(:url => "http://www.makersacademy.com",
-                :title => "Makers Academy", 
-                :tags => [Tag.first_or_create(:text => 'education')])
-    Link.create(:url => "http://www.google.com", 
-                :title => "Google", 
-                :tags => [Tag.first_or_create(:text => 'search')])
-    Link.create(:url => "http://www.bing.com", 
-                :title => "Bing", 
-                :tags => [Tag.first_or_create(:text => 'search')])
-    Link.create(:url => "http://www.code.org", 
-                :title => "Code.org", 
-                :tags => [Tag.first_or_create(:text => 'education')])
+    sign_up('test@test.com', 'tester', 'test_password', 'test_password')
+    sign_in('test@test.com', 'test_password')
+
+    add_link("http://www.makersacademy.com", "Makers Academy", ['education'],
+              "intensive 12 week course")
+    add_link("http://www.google.com", "Google", ['search'], 'search engine')
+    add_link("http://www.bing.com", "Bing", ['search'], 'search engine')
+    add_link("http://www.code.org", "Code.org", ['education'], 'online code school')
   }
 
   scenario "when opening the home page" do

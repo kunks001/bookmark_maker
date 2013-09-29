@@ -98,6 +98,7 @@ end
 
 Given(/^the user has forgotten their password$/) do
   User.create(:email => 'example@example.com',
+                :username => "tester",
                 :password => 'example',
                 :password_confirmation => 'example')
   visit('/sessions/new')

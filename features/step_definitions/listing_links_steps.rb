@@ -2,11 +2,12 @@ Given(/^there are the following links in the system:$/) do |links|
   links.hashes.each do |link|
     Link.create(:url => link['url'],
               :title => link['title'], 
-              :tags => [Tag.first_or_create(:text => link['tags'])])
+              :tags => [Tag.first_or_create(:text => link['tags'])],
+    			:user_id => link['user_id'])
   end
 end
 
-When(/^the user visits the search page$/) do
+When(/^the user visits the search tag page$/) do
 	visit('/tags/search')
 end
 
