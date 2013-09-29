@@ -22,7 +22,7 @@ header ul li {
 
 .nav {
   font-size: 15px;
-  width: 100px;
+  font-family: Arial;
   background-color: #82B743;
   border: 2px solid white;
   color: white; /*text colour*/
@@ -32,7 +32,7 @@ header ul li {
   border-radius: 4px; /*rounded corners*/
   margin-left: 10px;
   margin-right: 10px;
-  margin-top: 20px;
+  margin-top: 17px;
   text-shadow: 0 0 2px rgba(0,0,0, 0.4); /*for readability*/
 }
 
@@ -41,6 +41,10 @@ header ul li {
 }
 
 #sign_in{
+  margin-top: 25px;
+}
+
+#add_link{
   margin-top: 25px;
 }
 

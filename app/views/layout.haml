@@ -17,6 +17,10 @@
 
         - if current_user
           %li
+            #add_link
+              %a.nav(href="/links/new")
+                Add link
+          %li
             %form(method="post" action="/sessions" id="sign_out_form")
               %input(type="hidden" name="_method" value="delete")
               %button.nav(type="submit" value="Sign out")

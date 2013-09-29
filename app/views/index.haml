@@ -2,25 +2,10 @@
   Current links:
 
 - if @links != nil
-  %ul
-    - @links.each do |link|
-      - link_url = link.url
-      %li
-        %a(href=link_url)
-          =link.title
-        #description
-          =link.description
-        #tags
-          -tags = link.tags.to_a
-          -tags.each do |tag|
-            - tag_name = tag.text
-            - tag_url = "/tags/#{tag_name}"
-            %a(href=tag_url)
-              =tag_name
-        #user
-          -user_id = link.user_id
-          -user = User.first(:id => user_id)
-          ="added by #{user.username}"
+  #links-container
+    %ul#links
+      - @links.each do |link|
+        = partial :link, :locals => {:link => link}
 
 %aside
 %h2
