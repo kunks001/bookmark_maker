@@ -1,5 +1,5 @@
 Given(/^the user has signed in$/) do
-  (visit '/sessions/new')
+  visit ('/sessions/new')
   within("#sign-in") do
 	  fill_in "email",     :with => "test@test.com"
 	  fill_in "password",  :with => "test"
@@ -8,6 +8,7 @@ Given(/^the user has signed in$/) do
 end
 
 When(/^the user enters a new link and clicks Add link$/) do
+  visit ('/links/new')
   fill_in "url",         :with => "http://google.co.uk"
   fill_in "title",       :with => "Google"
   fill_in "tags",        :with => "Search"
@@ -24,6 +25,7 @@ Then(/^should go to the correct website$/) do
 end
 
 When(/^the user enters a new link without a title and clicks Add link$/) do
+  visit ('/links/new')
   fill_in "url",         :with => "http://google.co.uk"
   fill_in "tags",        :with => "Search"
   fill_in "description", :with => "search engine"

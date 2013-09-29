@@ -1,22 +1,3 @@
-%section
-  - if current_user
-    #new-link
-      %form(action="/links" method="post")
-        url 
-        %input(type="text" name="url")
-        title
-        %input(type="text" name="title")
-        tags
-        %input(type="text" name="tags")
-        description
-        %input(type="text" name="description")
-        %button(type="submit" value="Add link")
-          Add link
-  - else
-    #add_links_message
-      %p
-        Please sign in to add links
-
 %h2
   Current links:
 

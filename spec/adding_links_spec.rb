@@ -50,6 +50,7 @@ feature "User adds a new link" do
   end
 
   def add_link(url, title, tags = [], description = '')
+    visit '/links/new'
     within('#new-link') do
       fill_in 'url', :with => url
       fill_in 'title', :with => title

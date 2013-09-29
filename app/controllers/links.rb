@@ -1,5 +1,10 @@
 class Server < Sinatra::Base
-  post '/links' do
+  
+  get '/links/new' do
+    haml :"links/new"
+  end
+
+  post '/links/new' do
       url = params["url"]
       title = params["title"]
       description = params["description"]

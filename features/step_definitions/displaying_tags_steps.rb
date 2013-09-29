@@ -1,5 +1,5 @@
 When(/^the user is on the home page$/) do
-	visit ('/')
+  visit ('/')
 end
 
 Then(/^they should see a list of available tags$/) do
