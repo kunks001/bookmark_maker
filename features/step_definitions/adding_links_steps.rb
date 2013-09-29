@@ -22,3 +22,14 @@ end
 Then(/^should go to the correct website$/) do
   page.should have_xpath("//a[@href='#{'http://google.co.uk'}']")
 end
+
+When(/^the user enters a new link without a title and clicks Add link$/) do
+  fill_in "url",         :with => "http://google.co.uk"
+  fill_in "tags",        :with => "Search"
+  fill_in "description", :with => "search engine"
+  find(:button, 'Add link').click
+end
+
+Then(/^there should be an error message to include a title$/) do
+  page.should have_content("Please enter a title")
+end

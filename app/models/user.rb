@@ -7,7 +7,8 @@ class User
 	include DataMapper::Resource
 
 	property :id, Serial
-  property :email, String,  :unique => true, 
+  property :email, String,  :required => true,
+                            :unique => true, 
                             :format => /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i,
                             :messages => {
                               :is_unique => "The email you have entered is already taken. Please try again",
