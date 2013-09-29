@@ -120,6 +120,17 @@ When(/^the user visits the signup page and tries to sign up$/) do
   click_button("Sign up")
 end
 
+When(/^the user visits the signin page and tries to sign in$/) do
+  visit('/sessions/new')
+  within('#sign-in') do
+    fill_in "email", :with => "test@test.com"
+    fill_in "password", :with => "test_password"
+    click_button("Sign in")
+  end
+end
+
+
+
 Then(/^there should be an error message that they're already signed in$/) do
   page.should have_content("You're already signed in!")
 end

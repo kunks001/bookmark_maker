@@ -4,14 +4,19 @@ class Server < Sinatra::Base
   end
 
   post '/sessions' do
-    email, password = params[:email], params[:password]
-    user = User.authenticate(email, password)
-    if user
-      session[:user_id] = user.id
-      redirect to('/')
+    if session[:user_id] != nil
+      flash.now[:notice] = "You're already signed in!"
+      haml :index
     else
-      flash.now[:errors] = ["The email or password are incorrect"]
-      haml :"sessions/new"
+      email, password = params[:email], params[:password]
+      user = User.authenticate(email, password)
+      if user
+        session[:user_id] = user.id
+        redirect to('/')
+      else
+        flash.now[:errors] = ["The email or password are incorrect"]
+        haml :"sessions/new"
+      end
     end
   end
 
