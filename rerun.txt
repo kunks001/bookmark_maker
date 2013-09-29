@@ -1,1 +1,1 @@
-features/adding_links.feature:3 features/adding_links.feature:9 features/users.feature:2
+features/users.feature:2
