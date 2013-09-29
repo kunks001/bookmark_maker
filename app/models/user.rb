@@ -14,7 +14,8 @@ class User
                               :format    => "The email you have entered is not valid. Please try again"
                             }
   property :username, String, :unique => true, :message => "This username is already taken"
-	property :password_digest, Text
+	property :password_digest, Text,  :required => true, 
+                                    :message => "Please enter your password"
   property :password_token, Text
   property :password_token_timestamp, Time
 
@@ -22,6 +23,8 @@ class User
   attr_accessor :password_confirmation
 
   validates_confirmation_of :password
+  # validates_length_of :password,  :min => 6, :max => 20
+  # validates_length_of :password_confirmation, :min => 6, :max => 20
   validates_uniqueness_of :email
 
 	def password=(password)

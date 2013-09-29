@@ -24,6 +24,47 @@ Then(/^there should be a welcome message$/) do
   page.should have_content("Welcome to the bookmark maker, tester")
 end
 
+When(/^the user enters an incorrect email and clicks submit$/) do
+  fill_in "email", :with => "test.com"
+  fill_in "username", :with => "tester"
+  fill_in "password", :with => "test_password"
+  fill_in "password_confirmation", :with => "test_password"
+  click_button("Sign up")
+  end
+
+When(/^the user enters an incorrect password and clicks submit$/) do
+fill_in "email", :with => "test@test.com"
+  fill_in "username", :with => "tester"
+  fill_in "password", :with => "test_password"
+  fill_in "password_confirmation", :with => "tes_password"
+  click_button("Sign up")
+end
+
+When(/^the user enters a password of incorrect length and clicks submit$/) do
+  fill_in "email", :with => "test@test.com"
+  fill_in "username", :with => "tester"
+  fill_in "password", :with => "test"
+  fill_in "password_confirmation", :with => "test"
+  click_button("Sign up")
+end
+
+Then(/^there should be an error message that the password is an incorrect length$/) do
+  page.should have_content("Password must be between 6 and 20 characters long")
+end
+
+Then(/^there should be an error message that the password is incorrect$/) do
+  page.should have_content("Password does not match the confirmation")
+end
+
+Then(/^they should be redirected to the signup page$/) do
+  page.should have_content("Please sign up")
+end
+
+Then(/^there should be an error message$/) do
+  page.should have_content("The email you have entered is not valid. Please try again")
+end
+
+
 Given(/^the user is signed in$/) do
   (visit '/sessions/new')
   within("#sign-in") do
