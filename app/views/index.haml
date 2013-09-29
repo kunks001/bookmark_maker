@@ -1,22 +1,3 @@
-%header
-  %hi#logo
-    Bookmark Manager
-
-  - if current_user
-    %form(method="post" action="/sessions" id="sign_out_form")
-      %input(type="hidden" name="_method" value="delete")
-      %input(type="submit" value="Sign out" id="sign_out")
-
-  - else
-    #sign_up
-      %a(href="/users/new")
-        Sign up
-    #sign_in
-      %a(href="/sessions/new")
-        Sign in
-
-= partial :welcome_message
-
 %section
   - if current_user
     #new-link
@@ -29,7 +10,8 @@
         %input(type="text" name="tags")
         description
         %input(type="text" name="description")
-        %input(type="submit" value="Add link")
+        %button(type="submit" value="Add link")
+          Add link
   - else
     #add_links_message
       %p
@@ -48,7 +30,12 @@
         #description
           =link.description
         #tags
-          =link.tags.map(&:text)
+          -tags = link.tags.to_a
+          -tags.each do |tag|
+            - tag_name = tag.text
+            - tag_url = "/tags/#{tag_name}"
+            %a(href=tag_url)
+              =tag_name
         #user
           -user_id = link.user_id
           -user = User.first(:id => user_id)

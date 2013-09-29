@@ -4,10 +4,34 @@
     %title
       Bookmark manager
     %link(rel="stylesheet" type="text/css" href="/css/application.css")
+    %link(rel="stylesheet" type="text/css" href="/css/reset.css")
     %script(src="jquery-2.0.3.js")
     %script(src="jquery-bookmark.js")
 
   %body
-    / = partial :welcome_message
+    %header
+      %ul#header
+        %li#logo
+          %hi
+            Bookmark Manager
+
+        - if current_user
+          %li
+            %form(method="post" action="/sessions" id="sign_out_form")
+              %input(type="hidden" name="_method" value="delete")
+              %button.nav(type="submit" value="Sign out")
+                Sign out
+
+        - else
+          %li
+            #sign_up
+              %a.nav(href="/users/new")
+                Sign up
+          %li
+            #sign_in
+              %a.nav(href="/sessions/new")
+                Sign in
+
+    = partial :welcome_message
     = partial :flash
     = yield
