@@ -11,8 +11,8 @@ end
 When(/^the user enters their information and clicks submit$/) do
   fill_in "email", :with => "test@test.com"
   fill_in "username", :with => "tester"
-  fill_in "password", :with => "test"
-  fill_in "password_confirmation", :with => "test"
+  fill_in "password", :with => "test_password"
+  fill_in "password_confirmation", :with => "test_password"
   click_button("Sign up")
 end
 
@@ -28,7 +28,7 @@ Given(/^the user is signed in$/) do
   (visit '/sessions/new')
   within("#sign-in") do
     fill_in "email", :with => "test@test.com"
-    fill_in "password", :with => "test"
+    fill_in "password", :with => "test_password"
     click_button("Sign in")
   end
 end
@@ -50,7 +50,7 @@ When(/^the user signs in$/) do
   visit('/sessions/new')
   within('#sign-in') do
     fill_in "email", :with => "test@test.com"
-    fill_in "password", :with => "test"
+    fill_in "password", :with => "test_password"
     click_button("Sign in")
   end
 end

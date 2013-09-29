@@ -9,7 +9,7 @@ feature "User signs up" do
   end
 
   scenario "with a password that doesn't match" do
-    lambda { sign_up('a@a.com', 'pass', 'wrong') }.should change(User, :count).by(0)
+    lambda { sign_up('a@a.com', 'pass', 'wrong', 'right') }.should change(User, :count).by(0)
     expect(current_path).to eq('/users')   
     # expect(page).to have_content("Sorry, your passwords don't match")
   end
@@ -17,7 +17,12 @@ feature "User signs up" do
   scenario "with an email that is already registered" do    
     lambda { sign_up }.should change(User, :count).by(1)
     lambda { sign_up }.should change(User, :count).by(0)
-    expect(page).to have_content("This email is already taken")
+    expect(page).to have_content("The email you have entered is already taken")
+  end
+
+  scenario "with an incorrect email" do
+    lambda { sign_up('aa.com', 'pass', 'wrong', 'wrong') }.should change(User, :count).by(0)
+    expect(page).to have_content("The email you have entered is not valid")
   end
 
 end
@@ -26,14 +31,14 @@ feature "User signs in" do
   before(:each) do
     User.create(:email => 'test@test.com',
                 :username => 'tester',
-                :password => 'test',
-                :password_confirmation => 'test')
+                :password => 'test_password',
+                :password_confirmation => 'test_password')
   end
 
   scenario 'with correct credentials' do
     visit '/'
     expect(page).not_to have_content('Welcome, test@test.com')
-    sign_in('test@test.com', 'test')
+    sign_in('test@test.com', 'test_password')
     expect(page).to have_content("Welcome to the bookmark maker, tester")
   end
 
@@ -49,12 +54,12 @@ end
 feature "User signs out" do
   before(:each) do
     User.create(:email => 'test@test.com',
-                :password => 'test',
-                :password_confirmation => 'test')
+                :password => 'test_password',
+                :password_confirmation => 'test_password')
   end
 
   scenario 'while being signed in' do
-    sign_in('test@test.com', 'test')
+    sign_in('test@test.com', 'test_password')
     click_button "Sign out"
     expect(page).to have_content("Good bye!")
     expect(page).not_to have_content("Welcome, test@test.com")
@@ -66,8 +71,8 @@ feature "User tries to reset password" do
   before(:each) do
     User.create(:email => 'test@test.com',
                 :username => 'tester',
-                :password => 'test',
-                :password_confirmation => 'test')
+                :password => 'test_password',
+                :password_confirmation => 'test_password')
   end
 
   scenario 'with correct information' do
