@@ -17,6 +17,13 @@ Feature: Users
     Then they should be redirected to the signup page
     And there should be an error message that the password is incorrect
 
+  @sign_up
+  Scenario: Signing up with an incorrect password
+    Given the user is signed in
+    When the user visits the signup page and tries to sign up
+    Then they should be redirected to the index page
+    And there should be an error message that they're already signed in
+
   # Scenario: Signing up with a password of incorrect length
   #   Given the user is visiting the signup page
   #   When the user enters a password of incorrect length and clicks submit

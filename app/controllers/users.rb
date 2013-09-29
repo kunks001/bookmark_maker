@@ -24,16 +24,24 @@ class Server < Sinatra::Base
   end
 
   post '/users' do
-    @user = User.new( :email                  => params[:email], 
-                      :username               => params[:username],
-                      :password               => params[:password],
-                      :password_confirmation  => params[:password_confirmation])  
-    if @user.save
-      session[:user_id] = @user.id
-      redirect to('/')
+    if session[:user_id] != nil
+      flash.now[:notice] = "You're already signed in!"
+      haml :index
     else
-      flash.now[:errors] = @user.errors.full_messages
-      haml :"users/new"
+      @user = User.new( :email                  => params[:email], 
+                        :username               => params[:username],
+                        :password               => params[:password],
+                        :password_confirmation  => params[:password_confirmation])  
+      if @user.save
+        email = @user.email
+        username = @user.username
+        send_welcome(email, username)
+        session[:user_id] = @user.id
+        redirect to('/')
+      else
+        flash.now[:errors] = @user.errors.full_messages
+        haml :"users/new"
+      end
     end
   end
 
@@ -69,4 +77,12 @@ class Server < Sinatra::Base
     :text => "reset your password by following this link: bookmark_maker.herokuapp.com/users/reset_password?token=#{token}"
   end
 
+  def send_welcome(email, username)
+    RestClient.post "https://api:key-49tsww9jeu-mrc7f2pzyrauh7lfj5tx9"\
+    "@api.mailgun.net/v2/bookmarkmaker.mailgun.org/messages",
+    :from => "NoReply <noreply@bookmarkmaker.mailgun.org>",
+    :to => "#{email}",
+    :subject => "welcome",
+    :text => "Welcome to the bookmark manager, #{username}! Now you've signed up you'll be able to start adding links in no time."
+  end
 end

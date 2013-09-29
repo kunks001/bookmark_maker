@@ -40,13 +40,13 @@ fill_in "email", :with => "test@test.com"
   click_button("Sign up")
 end
 
-When(/^the user enters a password of incorrect length and clicks submit$/) do
-  fill_in "email", :with => "test@test.com"
-  fill_in "username", :with => "tester"
-  fill_in "password", :with => "test"
-  fill_in "password_confirmation", :with => "test"
-  click_button("Sign up")
-end
+# When(/^the user enters a password of incorrect length and clicks submit$/) do
+#   fill_in "email", :with => "test@test.com"
+#   fill_in "username", :with => "tester"
+#   fill_in "password", :with => "test"
+#   fill_in "password_confirmation", :with => "test"
+#   click_button("Sign up")
+# end
 
 Then(/^there should be an error message that the password is an incorrect length$/) do
   page.should have_content("Password must be between 6 and 20 characters long")
@@ -110,6 +110,20 @@ When(/^the user fills in the forgotten password form$/) do
     click_button("Submit")
   end
 end
+
+When(/^the user visits the signup page and tries to sign up$/) do
+  visit('/users/new')
+  fill_in "email", :with => "test2@test.com"
+  fill_in "username", :with => "tester2"
+  fill_in "password", :with => "test_password2"
+  fill_in "password_confirmation", :with => "test_password2"
+  click_button("Sign up")
+end
+
+Then(/^there should be an error message that they're already signed in$/) do
+  page.should have_content("You're already signed in!")
+end
+
 
 # Then /^(?:I|they|he|she|"([^"]*?)") should receive (an|no|\d+) emails? with subject "([^"]*?)"$/ do |address, amount, subject|
 #   unread_emails_for(address).select { |m| m.subject =~ Regexp.new(Regexp.escape(subject)) }.size.should == parse_email_count(amount)
