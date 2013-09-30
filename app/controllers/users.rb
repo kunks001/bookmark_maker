@@ -68,6 +68,11 @@ class Server < Sinatra::Base
     end
   end
 
+  get "/users/profile" do
+    @links = Link.select { |link| link.user_id == current_user.id}
+    haml :"users/profile"
+  end
+
   def send_message(token, email)
     RestClient.post "https://api:key-49tsww9jeu-mrc7f2pzyrauh7lfj5tx9"\
     "@api.mailgun.net/v2/bookmarkmaker.mailgun.org/messages",

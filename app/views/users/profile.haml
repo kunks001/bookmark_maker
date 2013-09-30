@@ -1,0 +1,9 @@
+%h1
+	= current_user.username
+
+%h3
+	= current_user.email
+
+%ul
+	- @links.each do |link|
+		= partial :link, :locals => {:link => link}

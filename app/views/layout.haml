@@ -12,7 +12,7 @@
     %header
       %ul#header
         %li#logo
-          %hi
+          %h1
             Bookmark Manager
 
         - if current_user
@@ -20,6 +20,10 @@
             #add_link
               %a.nav(href="/links/new")
                 Add link
+            %li
+            #profile
+              %a.nav(href="/users/profile")
+                Profile
           %li
             %form(method="post" action="/sessions" id="sign_out_form")
               %input(type="hidden" name="_method" value="delete")
