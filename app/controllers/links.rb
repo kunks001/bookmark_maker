@@ -8,10 +8,16 @@ class Server < Sinatra::Base
       url = params["url"]
       title = params["title"]
       description = params["description"]
+      user = current_user
       tags = params["tags"].split(" ").map do |tag|
       Tag.first_or_create(:text => tag)
     end
-    link = Link.new(:url => url, :title => title, :tags => tags, :description => description, :user_id => session[:user_id])
+    link = Link.new(  :url => url, 
+                      :title => title, 
+                      :tags => tags, 
+                      :description => description,
+                      :user => user
+                    )
     if link.save
       redirect to('/')
     else

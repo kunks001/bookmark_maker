@@ -6,6 +6,10 @@ class User
 
 	include DataMapper::Resource
 
+  has n, :links, :through => Resource
+
+  property :id, Serial
+
 	property :id, Serial
   property :email, String,  :required => true,
                             :unique => true, 

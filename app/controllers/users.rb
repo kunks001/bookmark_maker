@@ -69,7 +69,7 @@ class Server < Sinatra::Base
   end
 
   get "/users/profile" do
-    @links = Link.select { |link| link.user_id == current_user.id}
+    @links = current_user.links
     haml :"users/profile"
   end
 

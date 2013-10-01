@@ -30,7 +30,7 @@ feature 'User browses the list of links' do
     sign_up("test@test.com", "tester", "test_password", "test_password")
     sign_in("test@test.com", "test_password")
     add_link("google.co.uk", "google",["search"], "search engine")
-    page.should have_content("added by tester")
+    page.should have_content("Added by tester")
   end
 
   def sign_in(email, password)

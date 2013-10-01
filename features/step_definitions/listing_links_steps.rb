@@ -2,8 +2,7 @@ Given(/^there are the following links in the system:$/) do |links|
   links.hashes.each do |link|
     Link.create(:url => link['url'],
               :title => link['title'], 
-              :tags => [Tag.first_or_create(:text => link['tags'])],
-    			:user_id => link['user_id'])
+              :tags => [Tag.first_or_create(:text => link['tags'])])
   end
 end
 

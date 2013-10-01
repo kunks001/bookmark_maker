@@ -17,7 +17,7 @@ feature "User adds a new link" do
     link = Link.first
     expect(link.url).to eq("http://www.makersacademy.com/")
     expect(link.title).to eq("Makers Academy")
-    link.destroy
+    link.destroy!
     expect(Link.count).to eq(0)
   end
 

@@ -12,6 +12,5 @@
       %a(href=tag_url)
         =tag_name
   #user
-    -user_id = link.user_id
-    -user = User.first(:id => user_id)
-    ="added by #{user.username}"
+    - if link.user != nil
+      = "Added by #{link.user.username}"
