@@ -1,8 +1,9 @@
 class Link
   include DataMapper::Resource
 
-  has n, :tags, :through => Resource
-  has 1, :user, :through => Resource
+  has n, :tags, 	:through => Resource
+  has 1, :user, 	:through => Resource  
+  has n, :users, 	:through => :favourite
 
   property :id, Serial
   property :title, String

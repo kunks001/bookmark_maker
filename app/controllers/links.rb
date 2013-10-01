@@ -25,4 +25,14 @@ class Server < Sinatra::Base
       haml :index
     end
   end
+
+  post '/links/favourite' do
+    link = params["link_id"]
+    user = current_user
+    link = Link.get(link)
+    Favourite.create(  :user => user,
+                       :link => link
+                    )
+    redirect to('/')
+  end
 end

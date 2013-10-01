@@ -24,7 +24,7 @@ class Server < Sinatra::Base
   end
 
   post '/users' do
-    if session[:user_id] != nil
+    if current_user
       flash.now[:notice] = "You're already signed in!"
       haml :index
     else
@@ -70,7 +70,12 @@ class Server < Sinatra::Base
 
   get "/users/profile" do
     @links = current_user.links
+    @favourites = current_user.favourite_links
     haml :"users/profile"
+  end
+
+  get '/users/favourites' do
+    haml :"users/favourites"
   end
 
   def send_message(token, email)

@@ -7,3 +7,8 @@
 %ul
 	- @links.each do |link|
 		= partial :link, :locals => {:link => link}
+
+%ul
+	-
+	- @favourites.each do |link|
+		= partial :link, :locals => {:link => link}

@@ -14,3 +14,9 @@
   #user
     - if link.user != nil
       = "Added by #{link.user.username}"
+
+  - unless current_user.favourite_links.include? link
+    %form(action="/links/favourite" method="post")
+      - link_id = link.id
+      %input(type="hidden" name="link_id" value=link_id)
+      %input(type="submit" value="add to favourites")

@@ -6,6 +6,8 @@ class User
 
 	include DataMapper::Resource
 
+  has n, :favourites, :child_key => [ :user_id ]
+  has n, :favourite_links, 'Link', :through => :favourites, :via => :link
   has n, :links, :through => Resource
 
   property :id, Serial
