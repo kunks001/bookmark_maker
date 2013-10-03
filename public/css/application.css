@@ -96,6 +96,8 @@ header ul li {
   margin: 10px inherit;
   padding: 15px 10px;
   font-family: Arial;
+  position:relative;
+  display: none;
 }
 
 .link a.title {
@@ -162,6 +164,7 @@ header ul li {
   /* for left and right */
   margin: 10px inherit;
   padding: 15px 10px;
+  display: none;
 }
 
 .container {
