@@ -12,6 +12,7 @@ class Server < Sinatra::Base
       user = User.authenticate(email, password)
       if user
         session[:user_id] = user.id
+        flash[:notice] = "Welcome to the bookmark manager, #{current_user.username}"
         redirect to('/')
       else
         flash.now[:errors] = ["The email or password are incorrect"]

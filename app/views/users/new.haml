@@ -1,14 +1,17 @@
 - email = @user.email 
-%h1
-  Please sign up
 
-%form(action="/users" method="post")
-  Email:
-  %input(name="email" type="text" value="email")
-  Username:
-  %input(name="username" type="text")
-  Password:
-  %input(type="password" name="password")
-  Confirm Password:
-  %input(type="password" name="password_confirmation")
-  %input(type="submit" value="Sign up")
+.container
+  .content-container
+    %h1
+      Please sign up
+
+    %form(action="/users" method="post")
+      Email:
+      %input(name="email" type="text" value="email")
+      Username:
+      %input(name="username" type="text")
+      Password:
+      %input(type="password" name="password")
+      Confirm Password:
+      %input(type="password" name="password_confirmation")
+      %input(type="submit" value="Sign up")

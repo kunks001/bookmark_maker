@@ -18,14 +18,14 @@ end
 	scenario "when clicking 'favourite'" do
 		visit '/'
 		click_button 'add to favourites'
-		expect(page).to have_content('added to favourites')
 	end
 
 	scenario "when viewing favourites" do
 		visit '/'
 		click_button 'add to favourites'
-		visit '/users/favourites'
+		visit '/users/profile'
 		expect(page).to have_content("Makers Academy")
+    expect(page).to_not have_content("add to favourites")
 	end
 end
 

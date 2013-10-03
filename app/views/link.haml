@@ -1,22 +1,26 @@
 - link_url = link.url
-%li
-  %a(href=link_url)
-    =link.title
-  #description
-    =link.description
-  #tags
-    -tags = link.tags.to_a
-    -tags.each do |tag|
-      - tag_name = tag.text
-      - tag_url = "/tags/#{tag_name}"
-      %a(href=tag_url)
-        =tag_name
-  #user
-    - if link.user != nil
-      = "Added by #{link.user.username}"
-
-  - unless current_user.favourite_links.include? link
-    %form(action="/links/favourite" method="post")
-      - link_id = link.id
-      %input(type="hidden" name="link_id" value=link_id)
-      %input(type="submit" value="add to favourites")
+%li.link
+  .link-section
+    %a.title(href=link_url)
+      =link.title
+    .description
+      =link.description
+    .tags
+      -tags = link.tags.to_a
+      -tags.each do |tag|
+        - tag_name = tag.text
+        - tag_url = "/tags/#{tag_name}"
+        %a(href=tag_url)
+          =tag_name
+  .link-aside
+    .user
+      - if link.user != nil
+        Added by
+        %a(href="/users/profile")
+          = "#{link.user.username}"
+    - if current_user
+      - unless current_user.favourite_links.include? link
+        %form(action="/links/favourite" method="post")
+          - link_id = link.id
+          %input(type="hidden" name="link_id" value=link_id)
+          %input(type="submit" value="add to favourites" class="favourite")

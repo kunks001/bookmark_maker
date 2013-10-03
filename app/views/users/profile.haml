@@ -1,14 +1,16 @@
-%h1
-	= current_user.username
+.container
+	.content-container
+		%h1
+		= current_user.username
 
-%h3
-	= current_user.email
+		%h3
+			= current_user.email
 
-%ul
-	- @links.each do |link|
-		= partial :link, :locals => {:link => link}
+		#links-container
+			%ul
+				- @links.each do |link|
+					= partial :link, :locals => {:link => link}
 
-%ul
-	-
-	- @favourites.each do |link|
-		= partial :link, :locals => {:link => link}
+		%ul
+			- @favourites.each do |link|
+				= partial :link, :locals => {:link => link}

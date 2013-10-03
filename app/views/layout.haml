@@ -12,23 +12,30 @@
     %header
       %ul#header
         %li#logo
-          %h1
-            Bookmark Manager
+          %a(href="/")
+            %h1
+              Bookmark Manager
 
         - if current_user
-          %li
-            #add_link
-              %a.nav(href="/links/new")
-                Add link
-            %li
-            #profile
-              %a.nav(href="/users/profile")
-                Profile
           %li
             %form(method="post" action="/sessions" id="sign_out_form")
               %input(type="hidden" name="_method" value="delete")
               %button.nav(type="submit" value="Sign out")
                 Sign out
+                
+          %li
+            #add_link
+              %a.nav(href="/links/new")
+                Add link
+          %li
+            #profile
+              %a.nav(href="/users/profile")
+                Profile
+          / %li
+          /   %form(method="post" action="/sessions" id="sign_out_form")
+          /     %input(type="hidden" name="_method" value="delete")
+          /     %button.nav(type="submit" value="Sign out")
+          /       Sign out
 
         - else
           %li
@@ -40,6 +47,26 @@
               %a.nav(href="/sessions/new")
                 Sign in
 
-    = partial :welcome_message
+    / = partial :welcome_message
     = partial :flash
     = yield
+
+    %footer
+      %table
+        %tr
+          %td
+            #makersacademy-logo
+              %a(href="http://www.makersacademy.com")
+              %img(src="http://www.makersacademy.com/assets/logo.png")
+          
+          %td
+            #technologies
+              %p
+                I built this page at 
+                %a(href="http://www.makersacademy.com")
+                Makers Academy,
+                a highly selective 12 week coding course in London
+      
+              %p
+                This website is built using Ruby, Sinatra, 
+                RSpec, Capybara, HTML and CSS.

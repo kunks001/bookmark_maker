@@ -1,20 +1,20 @@
-%h2
-  Current links:
-
-- if @links != nil
+#container 
   #links-container
+    %h2#link-title
+      Current links:
     %ul#links
-      - @links.each do |link|
-        = partial :link, :locals => {:link => link}
+      - if @links != nil
+        - @links.each do |link|
+          = partial :link, :locals => {:link => link}
 
-%aside
-%h2
-  Tags
-
-- if @tags != nil
-  - @tags.each do |tag|
-    - tag_name = tag.text
-    - tag_url = "/tags/#{tag_name}"
-    %li
-      %a(href=tag_url)
-        = tag_name
+  #tags-container
+    %h2#tag-title
+      Tags
+    %ul#tags
+    - if @tags != nil
+      - @tags.each do |tag|
+        - tag_name = tag.text
+        - tag_url = "/tags/#{tag_name}"
+        %li.tag
+          %a(href=tag_url)
+            = tag_name
