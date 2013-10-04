@@ -222,6 +222,21 @@ header ul li {
   width: 150px;
 }*/
 
+#user_info {  
+  margin-left: 60px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+#user_info h1 {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+#user_info h3 {
+  font-size: 20px;
+}
+
 #new-link{
   position: relative; 
   margin: auto;
