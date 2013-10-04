@@ -187,6 +187,28 @@ header ul li {
   padding: 15px 10px;
 }
 
+.form {
+  margin:auto;
+  width: 300px;
+  padding-bottom: 100px;
+}
+
+.form h1 {
+  padding-top: 50px;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.form input {
+  width: 300px;
+  line-height: 20px;
+  margin-top: 10px;
+}
+
+.form .submit {
+  width: 150px;
+}
+
 #new-link{
   position: relative; 
   margin: auto;

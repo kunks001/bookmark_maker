@@ -2,16 +2,16 @@
   .content-container 
     - if current_user
       #new-link
-        %form(action="/links/new" method="post")
-          %li
+        .form
+
+          %h1
+            Add link
+            
+          %form(action="/links/new" method="post")
             %input(type="text" name="url" placeholder="Url")
-          %li
             %input(type="text" name="title" placeholder="Title")
-          %li
             %input(type="text" name="description" placeholder="Description")
-          %li
             %input(type="text" name="tags" placeholder="Tags")
-          %li
             %button(type="submit" value="Add link" class="nav")
               Add link
     - else
