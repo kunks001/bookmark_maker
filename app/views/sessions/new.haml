@@ -1,13 +1,16 @@
-Please sign in.
+.container
+  .content-container 
+    .form
+      %h1
+        Please sign in.
 
-%form#sign-in(method="post" action="/sessions")
-  Email:
-  %input(type="text" name='email')
-  Password:
-  %input(type="password" name='password')
-  %input(type="submit" value="Sign in")
+      %form#sign-in(method="post" action="/sessions")
+        %input(type="text" name='email' placeholder="Email")
+        %input(type="password" name='password' placeholder="Password")
+        %input(type="submit" value="Sign in" class="submit")
 
-Forgotten your password? Enter your email here to get a temporary one:
-%form#recover-password(action="/users/reset_token" method="post")
-  %input(name="email" type="text")
-  %input(value="Submit" type="submit")
+      %h1
+        Forgotten your password? Enter your email here to get a temporary one:
+      %form#recover-password(action="/users/reset_token" method="post")
+        %input(name="email" type="text" placeholder="Email")
+        %input(value="Submit" type="submit" class="submit")

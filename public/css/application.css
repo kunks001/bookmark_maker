@@ -60,6 +60,19 @@ header ul li {
   text-shadow: 0 0 2px rgba(0,0,0, 0.4); /*for readability*/
 }
 
+.submit {
+  font-size: 15px;
+  font-family: Arial;
+  background-color: #82B743;
+  border: 2px solid white;
+  color: white; /*text colour*/
+  text-decoration: none; /*no underlining*/
+  text-align: center;
+  border-radius: 4px; /*rounded corners*/
+  margin-top: 17px;
+  text-shadow: 0 0 2px rgba(0,0,0, 0.4); /*for readability*/
+}
+
 #sign_up{
   margin-top: 25px;
 }
@@ -204,10 +217,10 @@ header ul li {
   line-height: 20px;
   margin-top: 10px;
 }
-
+/*
 .form .submit {
   width: 150px;
-}
+}*/
 
 #new-link{
   position: relative; 

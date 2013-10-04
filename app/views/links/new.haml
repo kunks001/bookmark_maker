@@ -6,13 +6,13 @@
 
           %h1
             Add link
-            
+
           %form(action="/links/new" method="post")
             %input(type="text" name="url" placeholder="Url")
             %input(type="text" name="title" placeholder="Title")
             %input(type="text" name="description" placeholder="Description")
             %input(type="text" name="tags" placeholder="Tags")
-            %button(type="submit" value="Add link" class="nav")
+            %button(type="submit" value="Add link" class="submit")
               Add link
     - else
       #add_links_message
